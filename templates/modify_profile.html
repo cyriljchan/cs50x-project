@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %} Modify Profile {% endblock %}
+
+{% block main %}
+    <form class="mx-auto my-3 w-auto row justify-content-center g-3" action="/modify_profile" method="post">
+        <legend class="text-center">Modify Profile Information</legend>
+
+        <div class="col-md-3">
+            <label for="username" class="form-label">Username</label>
+            <input class="form-control" name="username" placeholder="Username" type="text" value="{{ user['username'] }}">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-3">
+            <label for="email" class="form-label">Email</label>
+            <input class="form-control" name="email" placeholder="Email" type="email" value="{{ user['email'] }}">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-3">
+            <label for="contact" class="form-label">Contact</label>
+            <input class="form-control" name="contact" placeholder="Contact" type="text" value="{{ user['contact'] }}">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-6 text-center">
+            <a class="btn btn-secondary" href="/profile">Return</a>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

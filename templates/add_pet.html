@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %} Add Pet {% endblock %}
+
+{% block main %}
+    <form class="mx-auto my-3 w-auto row justify-content-center g-3" action="/add_pet" method="post">
+        <legend class="text-center">Add Pet</legend>
+        <div class="col-md-3">
+            <label for="name" class="form-label">Name</label>
+            <input autofocus autocomplete="off" class="form-control" name="name" placeholder="Name" type="text">
+        </div>
+        <div class="col-md-3">
+            <label for="birthdate" class="form-label">Birthdate</label>
+            <input autocomplete="off" class="form-control" name="birthdate" placeholder="YYYY-MM-DD" type="text">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-3">
+            <label for="species" class="form-label">Species</label>
+            <input autocomplete="off" class="form-control" name="species" placeholder="e.g. Dog, Cat, Snake" type="text">
+        </div>
+        <div class="col-md-3">
+            <label for="breed" class="form-label">Breed</label>
+            <input class="form-control" name="breed" placeholder="e.g. Dalmatian, Siamese, Ball Python" type="text">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-6">
+            <label for="pattern" class="form-label">Color, Markings, Patterns</label>
+            <textarea class="form-control" name="pattern" placeholder="e.g. Black/Brown, Calico, Tortoiseshell" rows="3"></textarea>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-6 text-center">
+            <a class="btn btn-secondary" href="/pets">Return</a>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

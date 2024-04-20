@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block main %}
+<h1 class="m-3 text-center">PROFILE</h1>
+<div class="mx-auto my-5 row justify-content-center text-center">
+
+    <div class="col-2"></div>
+
+    <div class="col-3">
+        <img class="img-fluid" src="../static/img/default.png">
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="row g-3 col-4 justify-content-center">
+        <div class="row">
+            <div class="col-2"></div>
+            <p class="col my-auto">{{ user["type"] | upper}}
+                {% if user["type"] == "dvm" %}
+                <strong>({{ user["license"] }})</strong>
+                {% endif %}
+            </p>
+            <form class="col-2" action="/modify_profile" method="get">
+                <button class="btn bi bi-pencil-square" type="/submit"></button>
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <p class="col text-start">Name:</p>
+            <p class="col">{{ user["firstname"] }} {{ user["lastname"] }}</p>
+        </div>
+
+        <div class="row">
+            <p class="col text-start">Username:</p>
+            <p class="col">{{ user["username"] }}</p>
+        </div>
+
+        <div class="row">
+            <p class="col text-start">Password:</p>
+            <a class="col mb-2 btn btn-secondary btn-sm" href="/change_password">Change Password</a>
+        </div>
+
+        <div class="row">
+            <p class="col text-start">Email:</p>
+            <p class="col">{{ user["email"] }}</p>
+        </div>
+
+        <div class="row">
+            <p class="col text-start">Contact:</p>
+            <p class="col">{{ user["contact"] }}</p>
+        </div>
+    </div>
+
+    <div class="col-2"></div>
+</div>
+{% endblock %}

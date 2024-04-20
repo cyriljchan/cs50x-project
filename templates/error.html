@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %} Error {% endblock %}
+
+{% block main %}
+    <!-- https://memegen.link/ -->
+    <!-- https://knowyourmeme.com/memes/grumpy-cat -->
+    <div class="text-center m-5">
+        <img class="mb-3 border img-fluid" alt="{{ top }}" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?background=https://i.imgur.com/CsCgN7Ll.png&width=400" title="{{ top }}">
+        <form class="mb-3" action="/" method="GET">
+            <button class="btn btn-primary" autofocus type="submit">Return</button>
+        </form>
+    </div>
+{% endblock %}

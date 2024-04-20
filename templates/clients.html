@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block jsscript %}
+<script type="text/javascript" src="{{ url_for('static', filename='clients.js')}}" defer></script>
+{% endblock %}
+
+{% block title %} Patients {% endblock %}
+
+{% block main %}
+<div class="m-3">
+    <h1 class="text-center">CLINIC CLIENTS</h1>
+</div>
+<div class="mx-auto my-5">
+    <ul class="list-group">
+    {% for client in clients %}
+        <li class="fw-bold list-group-item list-group-item-action" id="client" data-bs-toggle="collapse" data-bs-target="#{{ client['id'] }}" aria-expanded="false" aria-controls="{{ client['id'] }}">
+            <div class="d-flex justify-content-between">
+                <div>{{ client['firstname'] | upper }} {{ client['lastname'] | upper }}</div>
+                <i class="bi bi-caret-down-fill"></i>
+            </div>
+        </li>
+        <div class="collapse px-3"  id="{{ client['id'] }}">
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Birthdate</th>
+                    <th>Species</th>
+                    <th>Breed</th>
+                    <th>Color, Markings, Patterns</th>
+                    <th>Vaccine</th>
+                </thead>
+                <tbody>
+                    {% for pet in pets if pet['client_id']==client['id'] %}
+                    <tr>
+                        <td>{{ pet["name"] | upper }}</td>
+                        <td>{{ pet["birthdate"] }}</td>
+                        <td>{{ pet["species"] | upper }}</td>
+                        <td>{{ pet["breed"] | upper }}</td>
+                        <td>{{ pet["pattern"] | upper }}</td>
+                        <td>
+                            <form action="/vaccines" method="post">
+                                <input type="hidden" name="id" value="{{ pet['id'] }}">
+                                <button type="submit" class="btn btn-success btn-sm"
+                                style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;">
+                                    VIEW
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+        <li class="list-group-item"></li>
+    </ul>
+</div>
+{% endblock %}

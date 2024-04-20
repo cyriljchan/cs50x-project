@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block jsscript %}
+<script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
+<script type="text/javascript">
+    timeslots = toJs({{ timeslots | tojson }})
+</script>
+{% endblock %}
+
+{% block title %} Add Schedule {% endblock %}
+
+{% block main %}
+<form class="mx-auto my-3 w-auto row justify-content-center g-3" action="/add_schedule" method="post">
+    <legend class="text-center">Schedule Check-up</legend>
+
+    <div class="col-md-2">
+        <label for="date" class="form-label">Date</label>
+        <select autofocus class="form-select" id="date" name="date" onchange="loadtime(timeslots)">
+            <option selected disabled>Select Date</option>
+            {% for date in timeslots %}
+                <option value="{{ date }}">{{ date }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label for="time" class="form-label">Time</label>
+        <select class="form-select" id="time" name="time">
+            <option selected disabled>Select Time</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <label for="pet_id" class="form-label">Pet Name</label>
+        <select class="form-select" name="pet_id">
+            <option selected disabled>Pet Name</option>
+            {% for pet in pets %}
+                <option value="{{  pet['id']  }}">{{ pet['name'] | upper }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="w-100"></div>
+
+    <div class="col-md-6">
+        <label for="purpose" class="form-label">Purpose</label>
+        <textarea class="form-control" name="purpose" placeholder="Type details of purpose" rows="5"></textarea>
+    </div>
+
+    <div class="w-100"></div>
+
+    <div class="col-md-6 text-center">
+        <a class="btn btn-secondary" href="/schedules">Return</a>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

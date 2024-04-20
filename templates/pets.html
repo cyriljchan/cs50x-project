@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %} Pets {% endblock %}
+
+{% block main %}
+<div class="row m-3">
+    <div class="col-3"></div>
+    <h1 class="col text-center">PETS</h1>
+    <div class="d-flex justify-content-end col-3 m-1 text-end">
+        <form action="/add_pet" method="get">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-house-add-fill"></i>
+                Add Pet
+            </button>
+        </form>
+    </div>
+</div>
+<div class="mx-auto my-5">
+    <table class="table text-center align-middle">
+        <thead>
+            <th>Name</th>
+            <th>Birthdate</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Color, Markings, Patterns</th>
+            <th>Vaccine</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+            <tr>
+                <td>{{ pet["name"] | upper }}</td>
+                <td>{{ pet["birthdate"] }}</td>
+                <td>{{ pet["species"] | upper }}</td>
+                <td>{{ pet["breed"] | upper }}</td>
+                <td>{{ pet["pattern"] | upper }}</td>
+                <td class="text-center">
+                    <form action="/vaccines" method="post">
+                        <input type="hidden" name="id" value="{{ pet['id'] }}">
+                        <button class="btn btn-primary" type="submit">View</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/modify_pet" method="post">
+                        <input type="hidden" name="id" value="{{ pet['id'] }}">
+                        <button class="btn btn-primary" type="submit">Edit</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

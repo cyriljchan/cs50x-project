@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block jsscript %}
+<script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
+{% endblock %}
+
+{% block title %} Register {% endblock %}
+
+{% block main %}
+    <form class="mx-auto my-3 w-auto row justify-content-center g-3" action="/register" method="post">
+        <legend class="text-center">Register</legend>
+        <div class="col-md-3" id="divtype">
+            <label for="type" class="form-label">User Type</label>
+            <select autofocus class="form-select" id="type" name="type" onchange="dvmlicense()">
+                <option selected disabled>User Type</option>
+                {% for type in types %}
+                    <option value="{{  type  }}">{{ type | upper }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="d-none col-md-2" id="divlicense">
+            <label for="license" class="form-label">License No.</label>
+            <input autocomplete="off" class="form-control" name="license" placeholder="License No." type="text">
+        </div>
+
+        <div class="col-md-3" id="divuser">
+            <label for="username" class="form-label">Username</label>
+            <input autocomplete="off" class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-3">
+            <label for="Password" class="form-label">Password</label>
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="col-md-3">
+            <label for="confirmation" class="form-label">Confirm Password</label>
+            <input class="form-control" name="confirmation" placeholder="Retype Password" type="password">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-3">
+            <label for="firstname" class="form-label">First Name</label>
+            <input class="form-control" name="firstname" placeholder="John" type="text">
+        </div>
+        <div class="col-md-3">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input class="form-control" name="lastname" placeholder="Doe" type="text">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-3">
+            <label for="email" class="form-label">Email</label>
+            <input class="form-control" name="email" placeholder="sample@email.com" type="email">
+        </div>
+        <div class="col-md-3">
+            <label for="contact" class="form-label">Contact Number</label>
+            <input class="form-control" name="contact" placeholder="Contact Number" type="text">
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" type="submit">Register</button>
+        </div>
+    </form>
+{% endblock %}

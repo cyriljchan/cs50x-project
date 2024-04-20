@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block main %}
+
+<div class="m-3 row g-3">
+    <div class="col-4">
+        <h3 class="p-1 bg-info-subtle rounded text-center">CLINIC BOARD</h3>
+        <div class="border border-secondary rounded overflow-hidden">
+            <table class="table table-striped">
+                <thead class="text-center"><th>ANNOUNCEMENTS</th></thead>
+                <tr><td>No clinic on weekends.</td></tr>
+                <tr><td>No clinic on Dec. 25, 2024.</td></tr>
+                <tr><td>Free checkups on January 1, 9999.</td></tr>
+                <tr><td>Lost doggy bag, please pick up.</td></tr>
+                <tr><td>Seasonal haircuts for pets.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    {% if session["user_type"] == 'client' %}
+    <div class="col-3">
+        <h3 class="p-1 bg-info-subtle rounded text-center">PETS</h3>
+        <div class="border border-secondary rounded overflow-hidden">
+            <table class="table table-striped text-center">
+                <thead>
+                    <th>NAME</th>
+                    <th>VACCINE</th>
+                </thead>
+                {% for pet in pets %}
+                <tr>
+                    <td>{{ pet.name | upper }}</td>
+                    <td>
+                        <form action="/vaccines" method="post">
+                            <input type="hidden" name="id" value="{{ pet.id }}">
+                            <button type="submit" class="btn btn-success btn-sm"
+                            style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;">
+                                VIEW
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
+    {%  if session["user_type"] == 'dvm' %}
+    <div class="col-8">
+    {% else %}
+    <div class="col-5">
+    {% endif %}
+        <h3 class="p-1 bg-info-subtle rounded text-center">CHECKUP SCHEDULE</h3>
+        <div class="border border-secondary rounded overflow-hidden">
+            <table class="table table-striped text-center">
+                <thead>
+                    <th>DATE</th>
+                    <th>TIME</th>
+                    {%  if session["user_type"] == 'dvm' %}
+                    <th>CLIENT</th>
+                    {% endif %}
+                    <th>PET</th>
+                    <th class="w-25">PURPOSE</th>
+                </thead>
+                {% for schedule in schedules %}
+                <tr>
+                    <td>{{ schedule.date }}</td>
+                    <td>{{ schedule.time }}</td>
+                    {%  if session["user_type"] == 'dvm' %}
+                    <td>{{ schedule.firstname | upper}} {{ schedule.lastname | upper }}</td>
+                    {% endif %}
+                    <td>{{ schedule.name | upper }}</td>
+                    <td class="w-25">{{ schedule.purpose | upper }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

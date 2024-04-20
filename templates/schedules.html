@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %} Schedule {% endblock %}
+
+{% block main %}
+<div class="row m-3">
+    <div class="col-3"></div>
+    <h1 class="col text-center">SCHEDULE</h1>
+    <div class="d-flex justify-content-end col-3 m-1 text-end">
+        <form action="/add_schedule" method="get">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-hospital"></i>
+                Schedule Checkup
+            </button>
+        </form>
+    </div>
+</div>
+<div class="mx-auto my-5">
+    <table class="table text-center align-middle">
+        <thead>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Pet</th>
+            <th>Purpose</th>
+            <th>Consulting</th>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+            <tr>
+                <td>{{ schedule["date"] | upper }}</td>
+                <td>{{ schedule["time"] | upper }}</td>
+                <td>{{ schedule["pet_name"] | upper }}</td>
+                <td class="w-25">{{ schedule["purpose"] | upper }}</td>
+                <td>DR. {{ schedule["dvm_name"] | upper }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

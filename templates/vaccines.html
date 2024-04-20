@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %} Vaccine {% endblock %}
+
+{% block main %}
+<div class="m-3">
+    <h1 class="text-center">VACCINES ({{ pets['name'] | upper }})</h1>
+</div>
+<div class="mx-auto my-5">
+    <table class="table text-center align-middle">
+        <thead>
+            <th>Date</th>
+            <th>Vaccine</th>
+            <th>Administering DVM</th>
+        </thead>
+        <tbody>
+            {% for vaccine in vaccines %}
+            <tr>
+                <td>{{ vaccine["date"] | upper }}</td>
+                <td>{{ vaccine["vaccine"] | upper }}</td>
+                <td>DR. {{ vaccine["firstname"] | upper }} {{ vaccine["lastname"] | upper }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
