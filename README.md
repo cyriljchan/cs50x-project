@@ -5,7 +5,7 @@ This is my final project for the CS50x (2024) course, a simple web application f
 This  webapp that allows for a convenient way for clinics and clients to communicate and store data. It allows client users to store their personal information as well as information regarding their pets, from existing clinical history to vaccine status. In addition, it also allows client users to easily schedule for checkups. DVM (Doctor of Veterinary Medicine) users will be able to view their clinic schedule in a tabulated manner and obtain necessary information about the client or their pet.
 
 ## ERD
-![Project ERD](/project/static/img/VetApp.png)
+![Project ERD](/static/img/VetApp.png)
 
 ## Pages:
 ### layout.html
