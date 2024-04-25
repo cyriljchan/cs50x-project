@@ -5,7 +5,7 @@
 {% block main %}
 
 <div class="m-3 row g-3">
-    <div class="col-4">
+    <div class="col-lg-4 col-sm-12">
         <h3 class="p-1 bg-info-subtle rounded text-center">CLINIC BOARD</h3>
         <div class="border border-secondary rounded overflow-hidden">
             <table class="table table-striped">
@@ -20,7 +20,7 @@
     </div>
 
     {% if session["user_type"] == 'client' %}
-    <div class="col-3">
+    <div class="col-lg-3 col-sm-12">
         <h3 class="p-1 bg-info-subtle rounded text-center">PETS</h3>
         <div class="border border-secondary rounded overflow-hidden">
             <table class="table table-striped text-center">
@@ -48,9 +48,9 @@
     {% endif %}
 
     {%  if session["user_type"] == 'dvm' %}
-    <div class="col-8">
+    <div class="col-lg-8 col-sm-12">
     {% else %}
-    <div class="col-5">
+    <div class="col-lg-5 col-sm-12">
     {% endif %}
         <h3 class="p-1 bg-info-subtle rounded text-center">CHECKUP SCHEDULE</h3>
         <div class="border border-secondary rounded overflow-hidden">
